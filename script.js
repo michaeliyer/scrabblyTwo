@@ -11,12 +11,14 @@ function filterWordsByPrefix(prefix) {
     return wordList.filter(word => word.startsWith(prefix.toUpperCase()));
 }
 
-// Display filtered words
+// Display filtered words and word count
 function displayFilteredWords(prefix) {
     const resultDiv = document.getElementById('wordListOutput');
     const words = filterWordsByPrefix(prefix);
+    const wordCount = words.length; // Calculate the word count
+
     resultDiv.innerHTML = words.length > 0
-        ? words.join(', ')
+        ? `<strong>Word Count:</strong> ${wordCount}<br><br>${words.join(', ')}`
         : 'No words found.';
 }
 
@@ -74,11 +76,20 @@ function calculateScore() {
 // Generate message based on score
 function getScoreMessage(totalScore) {
     if (totalScore <= 5) return "That's a terrible score.";
-    if (totalScore <= 8) return "OK, better than that 5-point crap.";
-    if (totalScore <= 10) return "Still weak, but you're trying.";
-    if (totalScore <= 15) return "Okay! You're playing some scrabble now.";
-    if (totalScore <= 20) return "Pushing it! Are you hoarding tiles?";
-    return "You're unstoppable... or are you cheating?";
+    if (totalScore <= 9) return "Better than that 5-point crap, but you are not good at this.";
+    if (totalScore <= 11) return "Very weak, but you're trying. That's worth something they say.";
+    if (totalScore <= 13) return "Now you're playing some scrabble. Not.";
+    if (totalScore <= 15) return "Ok, real points. Much better.";
+    if (totalScore <= 17) return "Pretty good. You are not wasting your time.";
+    if (totalScore <= 19) return "Very nice. You must play a lot";
+    if (totalScore <= 21) return "Okay! Now you're talking! That's really nice!";
+    if (totalScore <= 23) return "Now you're pushing it, pally. Are you stashing tiles?";
+    if (totalScore <= 25) return "You've got big old balls coming around here with that shit. Don't think dropping Q's and Z's and J's goes unnoticed...";
+    if (totalScore <= 27) return "Maybe someone needs to teach you a little lesson, essay! Maybe we don't deal too well with cheaters around here. You were warned and now it's too late!";
+    if (totalScore <= 29) return "You're dead to me, fuckface. You're ruined around here.";
+    if (totalScore <= 30) return "You will be reported if you don't fuck off right this moment!";
+
+    return "Get fucked. This is you being ghosted. You are totally unloved.";
 }
 
 // Attach filtering and scoring functionality on page load
