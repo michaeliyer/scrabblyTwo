@@ -1376,7 +1376,7 @@ export const dailyWordsSmall = [
     'KNOWN', 'KRILL', 'LADEN', 'LADLE', 'LANCE', 'LASSO', 'LATCH', 'LATER',
     'LATHE', 'LAUGH', 'LEACH', 'LEANT', 'LEASE', 'LEAST', 'LEFTY', 'LEGAL',
     'LEPER', 'LEVEL', 'LEVER', 'LIEGE', 'LIKEN', 'LIMBO', 'LIPID', 'LIVID', 'LLAMA',
-    'LOAMY', 'LOATH', 'LOBBY', 'LODGE', 'LOGIN', 'LOOSE', 'LORRY', 'LOUSY', 'LUMEN',
+    'LOAMY', 'LOATH', 'LOBBY', 'LOGIN', 'LOOSE', 'LORRY', 'LOUSY', 'LUMEN',
     'LUMPY', 'LUPUS', 'LURCH', 'LURID', 'LYMPH', 'LYRIC', 'MACHO', 'MACRO', 
     'MAFIA', 'MAKER', 'MAMMA', 'MAMMY', 'MANGE', 'MANGO', 'MANGY', 'MANIC',
     'MEATY', 'MECCA', 'MELEE', 'MIGHT', 'MILKY', 
@@ -2084,7 +2084,7 @@ export const dailyWordsLarge = [
     'LITHS', 'LITRE', 'LIVED', 'LIVEN', 'LIVES', 'LIVID', 'LIVOR', 'LIVRE', 'LLAMA',
     'LLANO', 'LOACH', 'LOADS', 'LOAFS', 'LOAMS', 'LOAMY', 'LOANS', 'LOAST', 'LOATH', 'LOAVE',
     'LOBAR', 'LOBBY', 'LOBED', 'LOBES', 'LOBOS', 'LOBUS', 'LOCHE', 'LOCHS', 'LOCIE',
-    'LOCIS', 'LOCKS', 'LOCOS', 'LOCUM', 'LODEN', 'LODES', 'LODGE', 'LOESS', 'LOFTS',
+    'LOCIS', 'LOCKS', 'LOCOS', 'LOCUM', 'LODEN', 'LODES', 'LOESS', 'LOFTS',
     'LOGAN', 'LOGES', 'LOGGY', 'LOGIA', 'LOGIE', 'LOGIN', 'LOGOI', 'LOGON',
     'LOGOS', 'LOHAN', 'LOIDS', 'LOINS', 'LOIPE', 'LOIRS', 'LOKES', 'LOLLS', 'LOLLY', 'LOLOG',
     'LOMAS', 'LOMED', 'LOMES', 'LONER', 'LONGA', 'LONGE', 'LONGS', 'LOOBY', 'LOOED', 'LOOEY',
@@ -10851,6 +10851,12 @@ export const wordleWords = [
         myScore: 3,
         wordNumber: 1348,
       },
+     {
+        word: "LODGE",
+        gameDate: "2/27/25",
+        myScore: 3,
+        wordNumber: 1349,
+      },
   
   ];
 
@@ -10860,6 +10866,6 @@ export const letterValues = {
     S: 1, T: 1, U: 1, V: 4, W: 4, X: 8, Y: 4, Z: 10
 };
 console.log("this works great");
-
+console.log("real nice like")
 
 
