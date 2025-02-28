@@ -1359,7 +1359,7 @@ export const dailyWordsSmall = [
     'FLECK', 'FLEET', 'FLIER', 'FLUID', 'FLUKE', 
     'FLUSH', 'FLUTE', 'FOAMY', 'FOIST', 'FOLIO', 'FORUM', 'FRAUD',
     'FREAK', 'FREED', 'FREER', 'FRIAR', 'FRILL', 'FRISK', 'FRITZ', 'FRUIT', 'FUCKO', 'FUDGE',
-    'FUGUE', 'FUNKY', 'FUROR', 'FURRY', 'FUSSY', 'FUZZY', 'GABLE', 'GAFFE', 'GAILY',  
+    'FUGUE', 'FUNKY', 'FUROR', 'FURRY', 'FUSSY', 'GABLE', 'GAFFE', 'GAILY',  
     'GASSY', 'GAUGE', 'GAVEL', 'GAYER', 'GAYLY', 'GAZER', 'GEEKY', 'GEESE', 'GENIE', 
     'GHOST', 'GIPSY', 'GIRLY', 'GIVER', 'GLADE', 'GLARE', 'GLINT', 'GLOSS', 'GNOME',
     'GODLY', 'GOLLY', 'GONAD', 'GOOEY', 'GOURD', 'GRAFT', 
@@ -1857,7 +1857,7 @@ export const dailyWordsLarge = [
     'FUMED', 'FUMER', 'FUMES', 'FUMET', 'FUNDI', 'FUNDS', 'FUNDY', 'FUNGO',
     'FUNGS', 'FUNKS', 'FURAL', 'FURAN', 'FURCA', 'FURLS', 'FUROL', 'FUROR',
     'FURRS', 'FURRY', 'FURTH', 'FURZE', 'FURZY', 'FUSED', 'FUSEE', 'FUSEL', 'FUSES', 'FUSIL',
-    'FUSKS', 'FUSSY', 'FUSTS', 'FUSTY', 'FUTON', 'FUZED', 'FUZEE', 'FUZES', 'FUZIL', 'FUZZY',
+    'FUSKS', 'FUSSY', 'FUSTS', 'FUSTY', 'FUTON', 'FUZED', 'FUZEE', 'FUZES', 'FUZIL', 
     'FYCES', 'FYKED', 'FYKES', 'FYLES', 'FYRDS', 'FYTTE', 'GABBA', 'GABBY', 'GABLE', 'GADDI',
     'GADES', 'GADGE', 'GADID', 'GADIS', 'GADJE', 'GADJO', 'GADSO', 'GAFFE', 'GAFFS', 'GAGED',
     'GAGER', 'GAGES', 'GAIDS', 'GAILY', 'GAINS', 'GAIRS', 'GAITA', 'GAITS', 'GAITT', 'GAJOS',
@@ -10856,6 +10856,12 @@ export const wordleWords = [
         gameDate: "2/27/25",
         myScore: 3,
         wordNumber: 1349,
+      },
+     {
+        word: "FUZZY",
+        gameDate: "2/28/25",
+        myScore: 4,
+        wordNumber: 1350,
       },
   
   ];
