@@ -1423,7 +1423,7 @@ export const dailyWordsSmall = [
     'SPASM', 'SPAWN', 'SPEED', 'SPERM', 'SPIED', 'SPIKY', 'SPILT', 
     'SPINY', 'SPLIT', 'SPOIL', 'SPOOF', 'SPOOK', 'SPOOL', 'SPORE', 'SPORT',
     'SPREE', 'SPUNK', 'SPURN', 'SQUIB', 'STACK', 'STALK',
-    'STAMP', 'STANK', 'STAVE', 'STEAK', 'STEAL', 
+    'STANK', 'STAVE', 'STEAK', 'STEAL', 
     'STEER', 'STILT', 'STOKE', 'STOOD', 'STOOP', 'STORK', 
     'STRIP', 'STRUT', 'STUCK', 'STUFF', 'STUMP', 'STUNK', 'STUNT', 'SUING',
     'SUITE', 'SULLY', 'SUMAC', 'SURGE', 'SWAMI', 'SWAMP', 'SWARM', 'SWASH',
@@ -2521,7 +2521,7 @@ export const dailyWordsLarge = [
     'SPUES', 'SPUGS', 'SPULE', 'SPUME', 'SPUMY', 'SPUNK', 'SPURN', 'SPURS', 'SPUTA',
     'SPYAL', 'SPYRE', 'SQUAB', 'SQUEG', 'SQUIB', 'SQUIT', 'SQUIZ',
     'STABS', 'STACK', 'STADE', 'STAGS', 'STAGY', 'STAIG',
-    'STALK', 'STAMP', 'STANE', 'STANG', 'STANK',
+    'STALK', 'STANE', 'STANG', 'STANK',
     'STAPH', 'STAPS', 'STARN', 'STARR', 'STARS',
     'STATS', 'STAUN', 'STAVE', 'STAWS', 'STAYS',
     'STEAK', 'STEAL', 'STEAN', 'STEAR', 'STEDD', 'STEDE', 'STEDS', 
@@ -10957,6 +10957,12 @@ export const wordleWords = [
         gameDate: "3/15/25",
         myScore: 4,
         wordNumber: 1365,
+      },
+      {
+        word: "STAMP",
+        gameDate: "3/16/25",
+        myScore: 3,
+        wordNumber: 1366,
       },
   
   ];
