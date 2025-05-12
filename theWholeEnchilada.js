@@ -1348,7 +1348,7 @@ export const dailyWordsSmall = [
     'DECOR', 'DEFER', 'DEIGN', 
     'DEMON', 'DEMUR', 'DENSE', 'DERBY', 'DETOX', 'DEUCE', 'DILLY', 'DIMLY',
     'DIODE', 'DIRTY', 'DITCH', 'DIVER', 'DIZZY', 'DODGY',
-    'DOGMA', 'DOUGH', 'DOWDY', 'DOWEL', 'DOWNY', 'DRAKE', 'DRAMA',
+    'DOGMA', 'DOUGH', 'DOWDY', 'DOWNY', 'DRAKE', 'DRAMA',
     'DRANK', 'DRAPE', 'DRAWL', 'DREAD', 'DRESS', 'DRIED', 'DRIER', 'DRIFT', 'DRILL',
     'DROIT', 'DRONE', 'DROSS', 'DROWN', 'DRUID', 'DRUNK', 'DRYLY',
     'DULLY', 'DUMPY', 'DUNCE', 'DUSKY', 'DUSTY', 'DYING', 'EAGER',  
@@ -1750,7 +1750,7 @@ export const dailyWordsLarge = [
     'DOSAI', 'DOSAS', 'DOSED', 'DOSEH', 'DOSER', 'DOSES', 'DOSHA', 'DOTAL', 'DOTED', 'DOTER',
     'DOTES', 'DOTTY', 'DOUAR', 'DOUCE', 'DOUCS', 'DOUGH', 'DOUKS', 'DOULA', 'DOUMA',
     'DOUMS', 'DOUPS', 'DOURA', 'DOUSE', 'DOUTS', 'DOVED', 'DOVEN', 'DOVER', 'DOVES', 'DOVIE',
-    'DOWAR', 'DOWDS', 'DOWDY', 'DOWED', 'DOWEL', 'DOWER', 'DOWIE', 'DOWLE', 'DOWLS', 'DOWLY',
+    'DOWAR', 'DOWDS', 'DOWDY', 'DOWED', 'DOWER', 'DOWIE', 'DOWLE', 'DOWLS', 'DOWLY',
     'DOWNA', 'DOWNS', 'DOWNY', 'DOWPS', 'DOWSE', 'DOWTS', 'DOXED', 'DOXES', 'DOXIE',
     'DOYEN', 'DOYLY', 'DOZED', 'DOZER', 'DOZES', 'DRABS', 'DRACK', 'DRACO', 'DRAFF',
     'DRAGS', 'DRAIL', 'DRAKE', 'DRAMA', 'DRAMS', 'DRANK', 'DRANT', 'DRAPE',
@@ -11294,7 +11294,12 @@ export const wordleWords = [
         myScore: 3,
         wordNumber: 1421,
       },
-  
+      {
+        word: "DOWEL",
+        gameDate: "5/11/25",
+        myScore: 4,
+        wordNumber: 1422,
+      },
   ];
 
 export const letterValues = {
