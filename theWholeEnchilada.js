@@ -12181,4 +12181,3 @@ function logOverallAverageScore() {
 }
 
 logOverallAverageScore();
-
