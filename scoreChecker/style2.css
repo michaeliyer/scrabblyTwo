@@ -64,6 +64,41 @@ h2 {
   margin-bottom: 20px;
 }
 
+.year-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.year-selector label {
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.year-dropdown {
+  padding: 8px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.year-dropdown:hover {
+  border-color: #667eea;
+}
+
+.year-dropdown:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
 .nav-btn {
   background: #667eea;
   color: white;
@@ -361,5 +396,14 @@ h2 {
   .controls {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .year-selector {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .year-dropdown {
+    width: 100%;
   }
 }

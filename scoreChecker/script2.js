@@ -60,6 +60,7 @@ class WordleScoreTracker {
 
   init() {
     this.setupEventListeners();
+    this.initializeYearSelector();
     this.renderCalendar();
     this.setDefaultEndDate();
     this.updateLowestScores();
@@ -69,11 +70,20 @@ class WordleScoreTracker {
     // Calendar navigation
     document.getElementById("prevMonth").addEventListener("click", () => {
       this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+      this.updateYearSelector();
       this.renderCalendar();
     });
 
     document.getElementById("nextMonth").addEventListener("click", () => {
       this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+      this.updateYearSelector();
+      this.renderCalendar();
+    });
+
+    // Year selector change event
+    document.getElementById("yearSelect").addEventListener("change", (e) => {
+      const selectedYear = parseInt(e.target.value);
+      this.currentDate.setFullYear(selectedYear);
       this.renderCalendar();
     });
 
@@ -97,6 +107,32 @@ class WordleScoreTracker {
     const endDateInput = document.getElementById("endDate");
     const today = new Date();
     endDateInput.value = today.toISOString().split("T")[0];
+  }
+
+  initializeYearSelector() {
+    const yearSelect = document.getElementById("yearSelect");
+
+    // Determine the year range from the data
+    const dates = Object.keys(this.wordleData).map((dateKey) => {
+      return new Date(dateKey);
+    });
+
+    const years = [...new Set(dates.map((date) => date.getFullYear()))].sort();
+
+    // Populate year dropdown
+    yearSelect.innerHTML = years
+      .map((year) => {
+        return `<option value="${year}">${year}</option>`;
+      })
+      .join("");
+
+    // Set current year
+    yearSelect.value = this.currentDate.getFullYear();
+  }
+
+  updateYearSelector() {
+    const yearSelect = document.getElementById("yearSelect");
+    yearSelect.value = this.currentDate.getFullYear();
   }
 
   renderCalendar() {
@@ -206,6 +242,10 @@ class WordleScoreTracker {
                     <p>${data.word}</p>
                 </div>
                 <div class="word-detail-item">
+                    <h4>Word #</h4>
+                    <p>${data.wordNumber}</p>
+                </div>
+                <div class="word-detail-item">
                     <h4>Score</h4>
                     <p>${data.score || "Not played"}</p>
                 </div>
@@ -213,14 +253,16 @@ class WordleScoreTracker {
                      <h4>Average Score</h4>
                      <p>${data.averageScore.toFixed(7)}</p>
                  </div>
+            </div>
+            <div class="word-info">
                 <div class="word-detail-item">
                     <h4>Games Played</h4>
                     <p>${data.totalGames}</p>
                 </div>
-            </div>
-            <div class="word-detail-item">
-                <h4>Date</h4>
-                <p>${this.formatDateForDisplay(new Date(data.gameDate))}</p>
+                <div class="word-detail-item">
+                    <h4>Date</h4>
+                    <p>${this.formatDateForDisplay(new Date(data.gameDate))}</p>
+                </div>
             </div>
         `;
   }
