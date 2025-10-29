@@ -302,6 +302,52 @@ h2 {
   border-color: #667eea;
 }
 
+.date-range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.date-range-inputs label {
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.date-range-inputs input[type="date"] {
+  padding: 8px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.date-range-inputs input[type="date"]:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.compare-btn {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.compare-btn:hover {
+  background: #d97706;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .update-btn {
   background: #48bb78;
   color: white;
@@ -404,6 +450,20 @@ h2 {
   }
 
   .year-dropdown {
+    width: 100%;
+  }
+
+  .date-range-inputs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .date-range-inputs label {
+    text-align: left;
+    width: 100%;
+  }
+
+  .date-range-inputs input[type="date"] {
     width: 100%;
   }
 }

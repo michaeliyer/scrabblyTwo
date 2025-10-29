@@ -5,6 +5,7 @@ class WordleScoreTracker {
     this.currentDate = new Date(2021, 5, 19); // June 19, 2021
     this.selectedDate = null;
     this.wordleData = this.processWordleData(wordleWords);
+    this.scoreChangeInfo = null;
     this.init();
   }
 
@@ -101,6 +102,66 @@ class WordleScoreTracker {
       .addEventListener("click", () => {
         this.updateLowestScores();
       });
+
+    // Calculate score change button
+    document
+      .getElementById("calculateScoreChange")
+      .addEventListener("click", () => {
+        this.calculateScoreChange();
+      });
+  }
+
+  calculateScoreChange() {
+    const startDate = document.getElementById("startCompareDate").value;
+    const endDate = document.getElementById("endCompareDate").value;
+
+    if (!startDate || !endDate) {
+      alert("Please select both start and end dates for comparison.");
+      return;
+    }
+
+    const startKey = this.formatDateForComparison(startDate);
+    const endKey = this.formatDateForComparison(endDate);
+
+    const startData = this.wordleData[startKey];
+    const endData = this.wordleData[endKey];
+
+    if (!startData || !endData) {
+      alert(
+        "One or both dates do not have data. Please select dates with available data."
+      );
+      return;
+    }
+
+    const scoreChange = endData.averageScore - startData.averageScore;
+    const gamesChange = endData.totalGames - startData.totalGames;
+
+    this.scoreChangeInfo = {
+      startDate: startDate,
+      endDate: endDate,
+      startScore: startData.averageScore,
+      endScore: endData.averageScore,
+      startDailyScore: startData.score,
+      endDailyScore: endData.score,
+      change: scoreChange,
+      gamesChange: gamesChange,
+      startWord: startData.word,
+      endWord: endData.word,
+    };
+
+    // Parse startDate as local date to avoid timezone issues
+    const selectedDateKey = this.selectedDate
+      ? this.formatDateKey(this.selectedDate)
+      : this.formatDateForComparison(startDate);
+    this.displayWordDetails(selectedDateKey);
+  }
+
+  formatDateForComparison(dateString) {
+    // Convert YYYY-MM-DD to the format used in wordleData
+    // Parse as local date to avoid timezone issues
+    const [year, month, day] = dateString.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+    return this.formatDateKey(date);
   }
 
   setDefaultEndDate() {
@@ -235,6 +296,54 @@ class WordleScoreTracker {
       return;
     }
 
+    let scoreChangeHTML = "";
+    if (this.scoreChangeInfo) {
+      const change = this.scoreChangeInfo.change;
+      const changeColor =
+        change > 0 ? "#ef4444" : change < 0 ? "#10b981" : "#6b7280";
+      const changeSymbol = change > 0 ? "↑" : change < 0 ? "↓" : "→";
+
+      // Parse dates in local time to avoid timezone issues
+      const parseDateString = (dateString) => {
+        const [year, month, day] = dateString.split("-").map(Number);
+        return new Date(year, month - 1, day);
+      };
+
+      scoreChangeHTML = `
+        <div class="word-info" style="background: #fef3c7; border-left: 5px solid ${changeColor}; padding: 15px; margin-top: 15px; border-radius: 8px;">
+          <h4 style="color: #92400e; margin-bottom: 10px;">Average Score Change: ${this.formatDateForDisplay(
+            parseDateString(this.scoreChangeInfo.startDate)
+          )} <span style="color: #3b82f6;">(${
+        this.scoreChangeInfo.startDailyScore
+      })</span> → ${this.formatDateForDisplay(
+        parseDateString(this.scoreChangeInfo.endDate)
+      )} <span style="color: #3b82f6;">(${
+        this.scoreChangeInfo.endDailyScore
+      })</span></h4>
+          <div class="word-info">
+            <div class="word-detail-item">
+              <h4>Start Score</h4>
+              <p>${this.scoreChangeInfo.startScore.toFixed(7)}</p>
+            </div>
+            <div class="word-detail-item">
+              <h4>End Score</h4>
+              <p>${this.scoreChangeInfo.endScore.toFixed(7)}</p>
+            </div>
+            <div class="word-detail-item">
+              <h4>Change ${changeSymbol}</h4>
+              <p style="color: ${changeColor}; font-weight: bold; font-size: 1.4rem;">${
+        change > 0 ? "+" : ""
+      }${change.toFixed(7)}</p>
+            </div>
+            <div class="word-detail-item">
+              <h4>Games Added</h4>
+              <p>${this.scoreChangeInfo.gamesChange}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     wordDetails.innerHTML = `
             <div class="word-info">
                 <div class="word-detail-item">
@@ -249,10 +358,10 @@ class WordleScoreTracker {
                     <h4>Score</h4>
                     <p>${data.score || "Not played"}</p>
                 </div>
-                 <div class="word-detail-item">
-                     <h4>Average Score</h4>
-                     <p>${data.averageScore.toFixed(7)}</p>
-                 </div>
+                <div class="word-detail-item">
+                    <h4>Average Score</h4>
+                    <p>${data.averageScore.toFixed(7)}</p>
+                </div>
             </div>
             <div class="word-info">
                 <div class="word-detail-item">
@@ -264,6 +373,7 @@ class WordleScoreTracker {
                     <p>${this.formatDateForDisplay(new Date(data.gameDate))}</p>
                 </div>
             </div>
+            ${scoreChangeHTML}
         `;
   }
 

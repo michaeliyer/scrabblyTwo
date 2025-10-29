@@ -31,6 +31,15 @@
         <!-- Details Section -->
         <section class="details-section">
           <h2>Word Details</h2>
+          <div class="date-range-inputs">
+            <label for="startCompareDate">Compare Start Date:</label>
+            <input type="date" id="startCompareDate" />
+            <label for="endCompareDate">Compare End Date:</label>
+            <input type="date" id="endCompareDate" />
+            <button id="calculateScoreChange" class="compare-btn">
+              Calculate Change
+            </button>
+          </div>
           <div id="wordDetails" class="word-details">
             <p>Click on a date to view word details and average score</p>
           </div>
