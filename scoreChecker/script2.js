@@ -64,6 +64,7 @@ class WordleScoreTracker {
     this.initializeYearSelector();
     this.renderCalendar();
     this.setDefaultEndDate();
+    this.setDefaultCalculatorDates();
     this.updateLowestScores();
   }
 
@@ -108,6 +109,13 @@ class WordleScoreTracker {
       .getElementById("calculateScoreChange")
       .addEventListener("click", () => {
         this.calculateScoreChange();
+      });
+
+    // Calculate average button
+    document
+      .getElementById("calculateAverage")
+      .addEventListener("click", () => {
+        this.calculateDateRangeAverage();
       });
   }
 
@@ -168,6 +176,12 @@ class WordleScoreTracker {
     const endDateInput = document.getElementById("endDate");
     const today = new Date();
     endDateInput.value = today.toISOString().split("T")[0];
+  }
+
+  setDefaultCalculatorDates() {
+    const calcEndDateInput = document.getElementById("calcEndDate");
+    const today = new Date();
+    calcEndDateInput.value = today.toISOString().split("T")[0];
   }
 
   initializeYearSelector() {
@@ -378,9 +392,23 @@ class WordleScoreTracker {
   }
 
   updateLowestScores() {
-    const startDate = new Date(document.getElementById("startDate").value);
-    const endDate = new Date(document.getElementById("endDate").value);
+    const startValue = document.getElementById("startDate").value;
+    const endValue = document.getElementById("endDate").value;
     const scoreCount = parseInt(document.getElementById("scoreCount").value);
+
+    // Parse YYYY-MM-DD as local dates to avoid timezone issues
+    const parseLocalDate = (value) => {
+      if (!value) return null;
+      const [y, m, d] = value.split("-").map(Number);
+      return new Date(y, m - 1, d);
+    };
+
+    const startDate = parseLocalDate(startValue);
+    const endDate = parseLocalDate(endValue);
+    if (!startDate || !endDate) return;
+
+    // Include the entire end day by setting time to 23:59:59.999
+    endDate.setHours(23, 59, 59, 999);
 
     // Filter data within date range
     const filteredData = Object.entries(this.wordleData)
@@ -405,6 +433,21 @@ class WordleScoreTracker {
     this.displayLowestScores(lowestScores);
   }
 
+  getScoreComparison(currentDate, daysBack) {
+    // Get the date N days before the current date
+    const compareDate = new Date(currentDate);
+    compareDate.setDate(compareDate.getDate() - daysBack);
+    const compareDateKey = this.formatDateKey(compareDate);
+
+    const compareData = this.wordleData[compareDateKey];
+
+    if (!compareData || !compareData.averageScore) {
+      return null;
+    }
+
+    return compareData;
+  }
+
   displayLowestScores(scores) {
     const lowestScoresContainer = document.getElementById("lowestScores");
 
@@ -415,22 +458,258 @@ class WordleScoreTracker {
     }
 
     lowestScoresContainer.innerHTML = scores
-      .map(
-        (score, index) => `
+      .map((score, index) => {
+        // Calculate comparisons
+        const dayBefore = this.getScoreComparison(score.date, 1);
+        const weekBefore = this.getScoreComparison(score.date, 7);
+        const twoWeeksBefore = this.getScoreComparison(score.date, 14);
+        const monthBefore = this.getScoreComparison(score.date, 30);
+
+        // Helper function to format difference
+        const formatDiff = (compareData) => {
+          if (!compareData) return '<span class="no-data">N/A</span>';
+
+          const diff = score.averageScore - compareData.averageScore;
+          const isPositive = diff > 0;
+          const symbol = isPositive ? "+" : "";
+          const colorClass = isPositive ? "diff-up" : "diff-down";
+
+          return `<span class="${colorClass}">${symbol}${diff.toFixed(
+            7
+          )}</span>`;
+        };
+
+        return `
             <div class="score-card">
-                <h4>#${index + 1} Lowest</h4>
-                 <div class="score-value">${score.averageScore.toFixed(7)}</div>
-                <div class="score-date">${this.formatDateForDisplay(
-                  score.date
-                )}</div>
-                <div class="word">${score.word}</div>
-                <div style="margin-top: 8px; font-size: 0.8rem; opacity: 0.8;">
-                    Score: ${score.score} (${score.totalGames} games)
+                <div class="card-main">
+                    <h4>#${index + 1} Lowest</h4>
+                    <div class="score-value">${score.averageScore.toFixed(
+                      7
+                    )}</div>
+                    <div class="score-date">${this.formatDateForDisplay(
+                      score.date
+                    )}</div>
+                    <div class="word">${score.word}</div>
+                    <div class="daily-score-info">
+                        Daily Score: ${score.score} (${score.totalGames} games)
+                    </div>
+                </div>
+                <div class="card-expanded">
+                    <div class="comparison-title">📊 Average Score Changes</div>
+                    <div class="comparison-item">
+                        <span class="comparison-label">vs. Day Before:</span>
+                        ${formatDiff(dayBefore)}
+                    </div>
+                    <div class="comparison-item">
+                        <span class="comparison-label">vs. Week Before:</span>
+                        ${formatDiff(weekBefore)}
+                    </div>
+                    <div class="comparison-item">
+                        <span class="comparison-label">vs. 2 Weeks Before:</span>
+                        ${formatDiff(twoWeeksBefore)}
+                    </div>
+                    <div class="comparison-item">
+                        <span class="comparison-label">vs. Month Before:</span>
+                        ${formatDiff(monthBefore)}
+                    </div>
                 </div>
             </div>
-        `
-      )
+        `;
+      })
       .join("");
+  }
+
+  calculateDateRangeAverage() {
+    const startValue = document.getElementById("calcStartDate").value;
+    const endValue = document.getElementById("calcEndDate").value;
+    const resultContainer = document.getElementById("averageResult");
+
+    if (!startValue || !endValue) {
+      resultContainer.innerHTML = `
+        <div class="result-error">
+          <p>⚠️ Please select both start and end dates.</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Parse YYYY-MM-DD as local dates to avoid timezone issues
+    const parseLocalDate = (value) => {
+      const [y, m, d] = value.split("-").map(Number);
+      return new Date(y, m - 1, d);
+    };
+
+    const startDate = parseLocalDate(startValue);
+    const endDate = parseLocalDate(endValue);
+
+    if (endDate < startDate) {
+      resultContainer.innerHTML = `
+        <div class="result-error">
+          <p>⚠️ End date must be after start date.</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Include the entire end day by setting time to 23:59:59.999
+    endDate.setHours(23, 59, 59, 999);
+
+    // Filter data within date range and get daily scores
+    const scoresInRange = Object.entries(this.wordleData)
+      .filter(([dateKey, data]) => {
+        const dataDate = new Date(data.gameDate);
+        return dataDate >= startDate && dataDate <= endDate && data.score > 0;
+      })
+      .map(([dateKey, data]) => ({
+        dateKey,
+        ...data,
+        date: new Date(data.gameDate),
+      }));
+
+    if (scoresInRange.length === 0) {
+      resultContainer.innerHTML = `
+        <div class="result-error">
+          <p>⚠️ No scores found in the selected date range.</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Calculate simple average of daily scores
+    const scores = scoresInRange.map((item) => item.score);
+    const totalScore = scores.reduce((sum, score) => sum + score, 0);
+    const averageScore = totalScore / scores.length;
+    const minScore = Math.min(...scores);
+    const maxScore = Math.max(...scores);
+    const totalGames = scores.length;
+
+    // Calculate score distribution
+    const scoreDistribution = {};
+    scores.forEach((score) => {
+      scoreDistribution[score] = (scoreDistribution[score] || 0) + 1;
+    });
+
+    // Find most common score
+    const mostCommonScore = Object.entries(scoreDistribution).reduce((a, b) =>
+      a[1] > b[1] ? a : b
+    )[0];
+
+    // Find best and worst performing words
+    const sortedByScore = [...scoresInRange].sort((a, b) => a.score - b.score);
+    const bestWords = sortedByScore.slice(0, 3);
+    const worstWords = sortedByScore.slice(-3).reverse();
+
+    // Display results
+    resultContainer.innerHTML = `
+      <div class="result-success">
+        <div class="result-header">
+          <h3>📈 Results for ${this.formatDateForDisplay(
+            startDate
+          )} to ${this.formatDateForDisplay(endDate)}</h3>
+        </div>
+        
+        <div class="result-stats-grid">
+          <div class="stat-card highlight">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-label">Average Score</div>
+            <div class="stat-value">${averageScore.toFixed(6)}</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">🎮</div>
+            <div class="stat-label">Games Played</div>
+            <div class="stat-value">${totalGames}</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-label">Best Score</div>
+            <div class="stat-value">${minScore}</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">😅</div>
+            <div class="stat-label">Worst Score</div>
+            <div class="stat-value">${maxScore}</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">🔥</div>
+            <div class="stat-label">Most Common</div>
+            <div class="stat-value">${mostCommonScore}</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-icon">📊</div>
+            <div class="stat-label">Total Points</div>
+            <div class="stat-value">${totalScore}</div>
+          </div>
+        </div>
+
+        <div class="words-showcase">
+          <div class="words-section">
+            <h4>🏆 Best Performances</h4>
+            <div class="words-list">
+              ${bestWords
+                .map(
+                  (item) => `
+                <div class="word-item best">
+                  <span class="word-name">${item.word}</span>
+                  <span class="word-score">${item.score}</span>
+                  <span class="word-date">${this.formatDateForDisplay(
+                    item.date
+                  )}</span>
+                </div>
+              `
+                )
+                .join("")}
+            </div>
+          </div>
+          
+          <div class="words-section">
+            <h4>😰 Toughest Words</h4>
+            <div class="words-list">
+              ${worstWords
+                .map(
+                  (item) => `
+                <div class="word-item worst">
+                  <span class="word-name">${item.word}</span>
+                  <span class="word-score">${item.score}</span>
+                  <span class="word-date">${this.formatDateForDisplay(
+                    item.date
+                  )}</span>
+                </div>
+              `
+                )
+                .join("")}
+            </div>
+          </div>
+        </div>
+
+        <div class="distribution-section">
+          <h4>📊 Score Distribution</h4>
+          <div class="distribution-bars">
+            ${Object.entries(scoreDistribution)
+              .sort((a, b) => parseInt(a[0]) - parseInt(b[0]))
+              .map(([score, count]) => {
+                const percentage = (count / totalGames) * 100;
+                return `
+                <div class="distribution-item">
+                  <span class="dist-label">Score ${score}:</span>
+                  <div class="dist-bar-container">
+                    <div class="dist-bar" style="width: ${percentage}%"></div>
+                  </div>
+                  <span class="dist-count">${count} (${percentage.toFixed(
+                  1
+                )}%)</span>
+                </div>
+              `;
+              })
+              .join("")}
+          </div>
+        </div>
+      </div>
+    `;
   }
 }
 
