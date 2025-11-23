@@ -12370,10 +12370,10 @@ export const wordleWords = [
         myScore: 2,
         wordNumber: 1616,
       },  
-      { word: "VOWEL",
-        gameDate: "11/21/25",
-        myScore: 2,
-        wordNumber: 1616,
+      { word: "THICK",
+        gameDate: "11/22/25",
+        myScore: 4,
+        wordNumber: 1617,
       },  
 
     
