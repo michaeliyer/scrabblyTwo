@@ -1360,7 +1360,7 @@ export const dailyWordsSmall = [
     'FETAL', 'FETUS', 'FICUS', 'FIERY', 
     'FIGHT', 'FILER', 'FILLY', 'FILMY', 'FILTH', 'FIZZY', 'FLACK', 'FLAKY',
     'FLECK', 'FLEET', 'FLIER', 'FLUID', 'FLUKE', 
-    'FLUSH', 'FLUTE', 'FRAUD',
+    'FLUSH', 'FRAUD',
     'FREAK', 'FREED', 'FREER', 'FRIAR', 'FRISK', 'FRUIT', 'FUCKO', 'FUDGE',
     'FUNKY', 'FUROR', 'FURRY', 'FUSSY', 'GABLE', 'GAFFE', 'GAILY',  
     'GASSY', 'GATOR', 'GAVEL', 'GAYER', 'GAYLY', 'GAZER', 'GEEKY', 
@@ -1439,7 +1439,7 @@ export const dailyWordsSmall = [
     'UNITY', 'UNSET', 'UNWED', 'URINE', 'UTILE', 'VALOR', 'VALVE', 'VAPOR',
     'VAUNT', 'VEGAN', 'VERSO', 'VICAR', 'VIGIL', 
     'VIPER', 'VIRUS', 'VISIT', 'VISTA', 'VOCAL', 'VOGUE', 
-    'VOMIT', 'WAGER', 'WAIST', 'WAIVE', 'WARTY', 
+    'VOMIT', 'WAGER', 'WAIVE', 'WARTY', 
     'WAVER', 'WAXEN', 'WEAVE', 'WEIGH', 'WELCH', 'WELSH', 'WHARF', 
     'WHITE', 'WIDER', 'WIDOW', 'WIGHT',
     'WILLY', 'WIMPY', 'WINCH', 'WISER', 'WISPY', 'WOMEN', 'WOODY', 'WOOLY',
@@ -1838,7 +1838,7 @@ export const dailyWordsLarge = [
     'FLONG', 'FLOPS', 'FLORS', 'FLORY', 'FLOSH', 'FLOTA',
     'FLOTE', 'FLOWS', 'FLUBS', 'FLUED', 'FLUES', 'FLUEY', 
     'FLUID', 'FLUKE', 'FLUKY', 'FLUMP', 'FLUOR', 'FLURR', 'FLUSH',
-    'FLUTE', 'FLUTY', 'FLUYT', 'FLYBY', 'FLYPE', 'FLYTE', 'FOALS', 'FOAMS', 
+    'FLUTY', 'FLUYT', 'FLYBY', 'FLYPE', 'FLYTE', 'FOALS', 'FOAMS', 
     'FOEHN', 'FOGEY', 'FOGIE', 'FOGLE', 'FOGOU', 'FOHNS', 'FOIDS',
     'FOILS', 'FOINS', 'FOLDS', 'FOLEY', 'FOLIA', 'FOLIC', 'FOLIE', 'FOLKS',
     'FOLKY', 'FOMES', 'FONDA', 'FONDS', 'FONDU', 'FONES', 'FONLY', 'FONTS', 'FOODS',
@@ -2679,7 +2679,7 @@ export const dailyWordsLarge = [
     'VUGHY', 'VULGO', 'VULNS', 'VULVA', 'VUTTY', 'WAACS', 'WACKE', 'WACKO', 'WACKS',
     'WADDS', 'WADDY', 'WADED', 'WADER', 'WADES', 'WADGE', 'WADIS', 'WADTS',
     'WAFFS', 'WAFTS', 'WAGED', 'WAGER', 'WAGES', 'WAGGA', 'WAGYU', 'WAHOO', 'WAIDE',
-    'WAIFS', 'WAIFT', 'WAILS', 'WAINS', 'WAIRS', 'WAIST', 'WAITE', 'WAITS', 'WAIVE', 'WAKAS',
+    'WAIFS', 'WAIFT', 'WAILS', 'WAINS', 'WAIRS', 'WAITE', 'WAITS', 'WAIVE', 'WAKAS',
     'WAKED', 'WAKEN', 'WAKER', 'WAKES', 'WAKFS', 'WALDO', 'WALDS', 'WALED', 'WALER', 'WALES',
     'WALIE', 'WALIS', 'WALKS', 'WALLA', 'WALLS', 'WALLY', 'WALTY', 'WAMED', 'WAMES',
     'WAMUS', 'WANDS', 'WANED', 'WANES', 'WANEY', 'WANGS', 'WANKS', 'WANKY', 'WANLE', 'WANLY',
@@ -12440,6 +12440,16 @@ export const wordleWords = [
         myScore: 3,
         wordNumber: 1630,
       },  
+      { word: "WAIST",
+        gameDate: "12/6/25",
+        myScore: 3,
+        wordNumber: 1631,
+      },  
+      { word: "FLUTE",
+        gameDate: "12/7/25",
+        myScore: 2,
+        wordNumber: 1632,
+      },  
 
     
   ];
@@ -12457,7 +12467,7 @@ console.log("Push, Stash, and Pop. What the Chryste!")
 console.log("August 4, 2025, Jackwagon. Dickerson. Eff On Off Guyo.")
 console.log("August 7, 2025, CORAL hits! Now what? Scion? Rinse? Caste? But CORAL HITS!")
 console.log("August 9, 2025, Mom: Hello" )
-console.log("December 5, 2025: Trump sux dykk000000000! AMONG")
+console.log("December 7, 2025: Trump sux dykk000000000! FLUTE")
 
 
 console.log(wordleWords)
