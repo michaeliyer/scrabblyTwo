@@ -1,4 +1,4 @@
-export const fixedWordsLarge = [
+export const fixedWordsLarge = [ 
     'QQQQQ', 'ZZZZZ', 'JJJJJ', 'QQZZJ', 'KKKJJ', 'JQQZZ', 'JZZQQ', 'QQJZZ', 'ZZJQQ', 'QQJZX',  
     'AAHED', 'AALII', 'AARGH', 'AARTI', 'ABACA', 'ABACI', 'ABACK', 'ABACS', 'ABAFT', 'ABAKA',
     'ABAMP', 'ABAND', 'ABASE', 'ABASH', 'ABASK', 'ABATE', 'ABAYA', 'ABBAS', 'ABBED', 'ABBES',
