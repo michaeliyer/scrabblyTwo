@@ -70,7 +70,7 @@ function calculateScore() {
 
 // Generate message based on score
 function getScoreMessage(totalScore) {
-    if (totalScore <= 5) return "That's a terrible score.";
+    if (totalScore <= 5) return "That's a terrible score!!!";
     if (totalScore <= 9) return "Better than that 5-point crap, but you are not good at this.";
     if (totalScore <= 11) return "Very weak, but you're trying. That's worth something they say.";
     if (totalScore <= 13) return "Now you're playing some scrabble. Not.";
@@ -84,7 +84,7 @@ function getScoreMessage(totalScore) {
     if (totalScore <= 29) return "You're dead to me, fuckface. You're ruined around here.";
     if (totalScore <= 30) return "You will be reported if you don't fuck off right this MOMENT!!!!!!!";
 
-    return "Get fucked, MOCHA. This is you being ghosted. You are totally unloved.";
+    return "Get fucked, STREW. This is you being ghosted. You are totally unloved.";
 }
 
 // Attach filtering and scoring functionality on page load
