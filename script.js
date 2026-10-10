@@ -84,7 +84,7 @@ function getScoreMessage(totalScore) {
     if (totalScore <= 29) return "You're dead to me, fuckface. You're ruined around here.";
     if (totalScore <= 30) return "You will be reported if you don't fuck off right this MOMENT!!!!!!!";
 
-    return "Get fucked, STREW. This is you being ghosted. You are totally unloved.";
+    return "Get fucked, MAJOR. This is you being ghosted. You are totally unloved.";
 }
 
 // Attach filtering and scoring functionality on page load
