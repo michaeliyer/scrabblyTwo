@@ -29,7 +29,7 @@ function calculateScore() {
     scoreMessageEl.innerText = ""; // Clear message
 
     if (!fixedWordsLarge.includes(input)) {
-        totalScoreEl.innerText = "That's Not A Valid Goddamn Word!";
+        totalScoreEl.innerText = "That's Not A Valid Goddamn Word, Guyo!!!";
         return;
     }
 
